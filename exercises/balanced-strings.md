@@ -8,7 +8,11 @@ Implement the following method:
 
 ```java
 public static boolean isBalanced(String str) {
-    ...
+    String localCopy = str.clone();
+    while (localCopy.length > 0) {
+        assertTrue(localCopy.length % 2 == 0);
+        ...
+    } 
 }
 ```
 

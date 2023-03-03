@@ -61,3 +61,4 @@ The advantages of `assertThrows` over `@Test` are :
 	- It has more information like the type of exception, its message, the stack trace.
 	- No need to use a try-catch block.
 	- We can specify other assertions in addition to it.
+	- We can choose in the code where an exception was expected to be returned.
