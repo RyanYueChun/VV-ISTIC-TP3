@@ -18,3 +18,19 @@ For example, we first calculate the float value of `3 * .4`, then we compare the
 
 If the absolute value of that substraction is lower than the level of precision we desire, then we can consider the assertion passed.
 For example, for a margin of error of `0.0001` at most :`assertTrue(abs(1.2 - (3 * .4)) < 0.0001)`.
+
+2.
+`assertSame` checks if 2 Java objects are using the same pointer reference. `assertEquals` instead checks for equality for the values ; if we are comparing primitives the values will be compared using the operator `==`, or else, the method `equals()` if objects are being compared.
+```
+Integer i1 = new Integer(1);
+Integer unknown = new Integer(1);
+
+// both test pass
+assertEquals(i1, i1);
+assertSame(i1, i1);
+
+// not the same result
+// passes
+assertEquals(i1, unknown);
+// fails
+assertSame(i1, unknown);
