@@ -22,15 +22,37 @@ For example, for a margin of error of `0.0001` at most :`assertTrue(abs(1.2 - (3
 2.
 `assertSame` checks if 2 Java objects are using the same pointer reference. `assertEquals` instead checks for equality for the values ; if we are comparing primitives the values will be compared using the operator `==`, or else, the method `equals()` if objects are being compared.
 ```
-Integer i1 = new Integer(1);
-Integer unknown = new Integer(1);
+@Test
+public void test1() {
+	Integer i1 = new Integer(1);
+	Integer unknown = new Integer(1);
 
-// both test pass
-assertEquals(i1, i1);
-assertSame(i1, i1);
+	// both test pass
+	assertEquals(i1, i1);
+	assertSame(i1, i1);
 
-// not the same result
-// passes
-assertEquals(i1, unknown);
-// fails
-assertSame(i1, unknown);
+	// not the same result
+	// passes
+	assertEquals(i1, unknown);
+	// fails
+	assertSame(i1, unknown);
+}
+```
+
+3.
+`fail` is a method provided by junit. When it's called in a test, it causes the test to fail. In addition to scenarios where **an exception** was expected, it's can also used in scenarios where the value obtained isn't equal to what was expected, or when there is an unfinished test case that must be written later. The situations where we may want to use `fail` instead of `assertEquals` is when we don't directly have values to compare. For example, when we are moving from an application state to another in the workflow, if we end up in an application state that should be avoided for the current test case `fail` is appropriate.
+```
+@Test
+public void testException() {
+	Mouse mouse = new Mouse();
+	Cat cat = new Cat();
+
+	// Normally, cat is stronger than mouse
+	if (mouse.defeat(cat)) {
+		// an exception should be thrown, if not, then fail
+		fail("mouse can't defeat cat");
+	}
+}
+```
+
+4.
