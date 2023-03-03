@@ -12,9 +12,9 @@ Answer the following questions:
 
 ## Answer
 1.
-The values .4 and 1.2 are of the float type. Float types are numeric values that are approximations of their real mathematical counterpart. Meaning, these value of .4 and 1.2 floats are close to the mathematical .4 and 1.2, but there can be some margin of error.
-In order this kind of problem, we can take into account a certain level of approximation.
-For example, we firste calculate the float value of `3 * .4`, then we compare the difference in value between that latter result and the float value `1.2` using the substraction operator : `1.2 - (3 * .4)`.
+The values .4 and 1.2 are of the float type. Float types are numeric values that are approximations of their real mathematical counterparts. Meaning, these float values of .4 and 1.2 are close to the theoric mathematical .4 and 1.2 values, but there can be a margin of error.
+To prevent this kind of problem, we can take into account a certain level of approximation.
+For example, we first calculate the float value of `3 * .4`, then we compare the difference in value between that latter result and the float value `1.2` using the substraction operator as so : `1.2 - (3 * .4)`.
 
-If the absolute value of that substraction is lower than the level of precision we desire, then we can consider the assertion passes.
+If the absolute value of that substraction is lower than the level of precision we desire, then we can consider the assertion passed.
 For example, for a margin of error of `0.0001` at most :`assertTrue(abs(1.2 - (3 * .4)) < 0.0001)`.
