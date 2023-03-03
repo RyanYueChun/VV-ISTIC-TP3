@@ -11,3 +11,10 @@ Answer the following questions:
 4. In JUnit 4, an exception was expected using the `@Test` annotation, while in JUnit 5 there is a special assertion method `assertThrows`. In your opinion, what are the advantages of this new way of checking expected exceptions?
 
 ## Answer
+1.
+The values .4 and 1.2 are of the float type. Float types are numeric values that are approximations of their real mathematical counterpart. Meaning, these value of .4 and 1.2 floats are close to the mathematical .4 and 1.2, but there can be some margin of error.
+In order this kind of problem, we can take into account a certain level of approximation.
+For example, we firste calculate the float value of `3 * .4`, then we compare the difference in value between that latter result and the float value `1.2` using the substraction operator : `1.2 - (3 * .4)`.
+
+If the absolute value of that substraction is lower than the level of precision we desire, then we can consider the assertion passes.
+For example, for a margin of error of `0.0001` at most :`assertTrue(abs(1.2 - (3 * .4)) < 0.0001)`.
