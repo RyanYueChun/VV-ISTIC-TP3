@@ -10,8 +10,14 @@ Implement the following method:
 public static boolean isBalanced(String str) {
     String localCopy = str.clone();
     while (localCopy.length > 0) {
-        assertTrue(localCopy.length % 2 == 0);
-        ...
+        assertTrue(localCopy.length % 2 == 0, "The length of the string is not even, thus not balanced");
+        int oldLength = str.length();
+        
+        str = str.replace("{}", "");
+        str = str.replace("()", "");
+        str = str.replace("[]", "");
+
+        assertNotEquals(oldLength, str.length(), "The string is not balanced.");
     } 
 }
 ```
