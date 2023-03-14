@@ -35,4 +35,30 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+1. I have divided my test cases into four partitions based on specific criteria.
+- The **first** partition focuses on valid strings, where all symbols are correctly placed.
+- The **second** and **third** partitions deal with strings that are missing either a closing or opening symbol, respectively.
+- The **fourth** partition deals with strings that contain symbols with an incorrect or random order.
+
+2. To see the coverage of my tests, I used the Jacoco library. 
+Within my test class, I created 2 parameterized  tests and 4 MethodSources for 
+the partitions that I defined.
+these defined test cases, I was able to achieve 100% coverage (Missed Instructions: 0 & Missed Branches 0)
+
+To get the report , follow this steps :
+- `mvn test`
+- `mvn jacoco:report`
+
+You will find the report in */code/tp3-balanced-strings/target/site/jacoco/fr.istic.vv/index.html*
+
+3. Done in previous question
+4. In my first PIT test, I achieved 93% mutation coverage. 
+The PIT tool generated a total of 15 mutations, out of which 14 were killed and only 1 survived.
+Upon further analysis of the mutations, I realized that I was missing a test case for special characters.
+I added a new partition for this scenario and my mutation score had improved to 100%.
+
+In the code u will find this new partition.
+
+For the report, you can use the command: `mvn clean test pitest:mutationCoverage`.
+
 
