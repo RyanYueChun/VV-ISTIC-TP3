@@ -49,7 +49,7 @@ To get the report , follow this steps :
 - `mvn test`
 - `mvn jacoco:report`
 
-You will find the report in */code/tp3-balanced-strings/target/site/jacoco/fr.istic.vv/index.html*
+You will find the report in **/code/tp3-balanced-strings/target/site/jacoco/fr.istic.vv/index.html**
 
 3. Done in previous question
 4. In my first PIT test, I achieved 93% mutation coverage. 
@@ -60,5 +60,6 @@ I added a new partition for this scenario and my mutation score had improved to 
 In the code u will find this new partition.
 
 For the report, you can use the command: `mvn clean test pitest:mutationCoverage`.
+You will find the generated reports in **target/pit-reports**
 
 
