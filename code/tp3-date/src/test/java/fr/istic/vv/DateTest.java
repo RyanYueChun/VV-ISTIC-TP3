@@ -48,19 +48,19 @@ class DateTest {
     }
 
     @ParameterizedTest
-    @MethodSource("validDateList")
+    @MethodSource("validDateInput")
     public void isValidDate(int day, int month, int year) {
         assertTrue(Date.isValidDate(day, month, year));
     }
 
     @ParameterizedTest
-    @MethodSource("invalidDateList")
+    @MethodSource("invalidDateInput")
     public void isInvalidDate(int day, int month, int year) {
         assertFalse(Date.isValidDate(day, month, year));
     }
 
     @ParameterizedTest
-    @MethodSource("nextDateData")
+    @MethodSource("validInputNextDate")
     public void checkNextDate(List<Integer> date1, List<Integer> date2) {
         Date dd = new Date(date1.get(0), date1.get(1), date1.get(2));
         Date nextDate = dd.nextDate();
@@ -83,7 +83,7 @@ class DateTest {
     }
 
     @ParameterizedTest
-    @MethodSource("previousDateData")
+    @MethodSource("validInputPreviousDate")
     public void checkPreviousDate(List<Integer> date1, List<Integer> date2) {
         Date dd = new Date(date1.get(0), date1.get(1), date1.get(2));
         Date previousDate = dd.previousDate();
@@ -111,10 +111,6 @@ class DateTest {
         assertThrows(NullPointerException.class, () -> d1.compareTo(null));
     }
 
-    /**
-     * partition to test Date.numberOfDaysInMonth() function
-     * @return
-     */
     static Stream<Arguments> invalidNumberOfDays() {
         return Stream.of(
                 arguments(1, 2023, 50),
@@ -133,38 +129,39 @@ class DateTest {
                 );
     }
 
-    static Stream<Arguments> nextDateData() {
+    static Stream<Arguments> validInputPreviousDate() {
         return Stream.of(
-                arguments(Arrays.asList(31,1,2022), Arrays.asList(1,2,2022)),
-                arguments(Arrays.asList(28,2,2024), Arrays.asList(29,2,2024)),
-                arguments(Arrays.asList(31,12,2021), Arrays.asList(1,1,2022))
+                arguments(Arrays.asList(1,1,2022), Arrays.asList(31,12,2021)),
+                arguments(Arrays.asList(10,5,2021), Arrays.asList(9,5,2021)),
+                arguments(Arrays.asList(1,3,2023), Arrays.asList(28,2,2023))
         );
     }
 
-    static Stream<Arguments> previousDateData() {
+    static Stream<Arguments> validInputNextDate() {
         return Stream.of(
-                arguments(Arrays.asList(10,1,2022), Arrays.asList(9,1,2022)),
-                arguments(Arrays.asList(1,2,2024), Arrays.asList(31,1,2024)),
-                arguments(Arrays.asList(31,12,2021), Arrays.asList(30,12,2021))
+                arguments(Arrays.asList(15,11,2021), Arrays.asList(16,11,2021)),
+                arguments(Arrays.asList(31,12,2023), Arrays.asList(1,1,2024)),
+                arguments(Arrays.asList(28,2,2023), Arrays.asList(1,3,2023))
         );
     }
 
-    static Stream<Arguments> invalidDateList() {
+    static Stream<Arguments> invalidDateInput() {
         return Stream.of(
-                arguments(29, 2, 2022),
-                arguments(31, 6, 2023),
-                arguments(-1, 2, 20),
-                arguments(31,02,2024),
-                arguments(01,13,2000),
-                arguments(42,12,2010)
+                arguments(29, 2, 2023),
+                arguments(31, 6, 2015),
+                arguments(-1, 2, 2000),
+                arguments(1,1,-5),
+                arguments(10,-1,2011),
+                arguments(42,12,2010),
+                arguments(10,15,2010)
         );
     }
 
-    static Stream<Arguments> validDateList() {
+    static Stream<Arguments> validDateInput() {
         return Stream.of(
-                arguments(1, 1, 2010),
-                arguments(2, 12, 2022),
-                arguments(06,05,2022)
+                arguments(28, 2, 2023),
+                arguments(1, 1, 1),
+                arguments(29,2,2000)
         );
     }
 

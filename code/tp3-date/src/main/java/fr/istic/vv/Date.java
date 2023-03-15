@@ -1,9 +1,5 @@
 package fr.istic.vv;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 class Date implements Comparable<Date> {
     private int day;
     private int month;
