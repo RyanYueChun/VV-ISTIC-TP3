@@ -170,9 +170,9 @@ class DateTest {
                 arguments(new Date(11,11,2020), new Date(10, 10, 2010), 1),
                 arguments(new Date(11,11,1998), new Date(10, 10, 2020), -1),
                 arguments(new Date(11,5,2000), new Date(10, 6, 2000), -1),
-                arguments(new Date(11,11,2000), new Date(10, 9, 2000), 1),
-                arguments(new Date(25,9,2000), new Date(15, 9, 2000), 1),
-                arguments(new Date(12,9,2000), new Date(17, 9, 2000), -1)
+                arguments(new Date(10,11,2000), new Date(10, 9, 1998), 1),
+                arguments(new Date(25,10,2000), new Date(15, 9, 2000), 1),
+                arguments(new Date(12,9,2015), new Date(17, 9, 2014), -1)
         );
     }
 
