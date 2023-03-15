@@ -53,3 +53,44 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1. #### Test inputs of **isLeapYearMethod**
+
+In this method i use this formula : `(year % 4 == 0 && year % 100 != 0) || year % 400 == 0)`
+to check if a year is leap or not.
+
+As u know in java, when we use `&&`, the compiler will not verify the second condition, if the first is false.
+And the same for `||`, the compiler will not check the second condition if the first is True.
+I have defined 2 global partitions that will check all the conditions.
+We consider that this is our formula `(A && B) || C`.
+##### Valid Partition:
+- A: True, B: False, C: True => True (1200, 2000)
+- A: TRue, B: True, C: False => TRue (1404, 1408, 1412)
+
+##### Invalid Partition
+- A: false, B: true, c: false => false (1001, 1002)
+- A: True, B: False, C: False => False (1700,1900, 2100)
+- Random : -1, 0002
+
+#### Test inputs of **numberOfDaysInMonth**
+The purpose of this method is to return the number of days for each month, utilizing the isLeapYear function within. 
+As we know, the only difference between leap years and non-leap years is the month of February.
+So i have defined 3 partitions for this method: 
+##### Invalid data:
+- Invalid number of days, 
+- Incorrect number of days in leap years.
+- Incorrect number of days in non-leap years.
+
+##### Valid data:
+- Correct number of days in both leap and non-leap years.
+
+#### Data that's throw Exception
+
+#### Test inputs of compareDate()
+The purpose of this method is to return 0 if the both dates are equal, 1 if this is posterior to other,
+-1 if it's anterior to other.
+
+So i have defined 3 partitions:
+- Using sameDate
+- Using different date
+- Using invalidDate
+
