@@ -108,7 +108,7 @@ class DateTest {
     @Test
     public void shouldThrowExceptionInCompareTo() {
         Date d1 = new Date(1,1,2011);
-        assertThrows(RuntimeException.class, () -> d1.compareTo(null));
+        assertThrows(NullPointerException.class, () -> d1.compareTo(null));
     }
 
     /**
@@ -129,7 +129,7 @@ class DateTest {
                 arguments(2, 2000, 29),
                 arguments(2, 1900, 28),
                 arguments(1, 2023, 31),
-                arguments(13, 2022, 30)
+                arguments(4, 2022, 30)
                 );
     }
 
