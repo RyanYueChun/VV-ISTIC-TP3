@@ -8,17 +8,7 @@ Implement the following method:
 
 ```java
 public static boolean isBalanced(String str) {
-    String localCopy = str.clone();
-    while (localCopy.length > 0) {
-        assertTrue(localCopy.length % 2 == 0, "The length of the string is not even, thus not balanced");
-        int oldLength = str.length();
-        
-        str = str.replace("{}", "");
-        str = str.replace("()", "");
-        str = str.replace("[]", "");
-
-        assertNotEquals(oldLength, str.length(), "The string is not balanced.");
-    } 
+        ...
 }
 ```
 
@@ -35,6 +25,7 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+You can find the program code [here](../code/tp3-balanced-strings)
 1. I have divided my test cases into four partitions based on specific criteria.
 - The **first** partition focuses on valid strings, where all symbols are correctly placed.
 - The **second** and **third** partitions deal with strings that are missing either a closing or opening symbol, respectively.
