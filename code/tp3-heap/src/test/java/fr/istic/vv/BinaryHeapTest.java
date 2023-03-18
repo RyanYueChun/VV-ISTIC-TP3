@@ -37,18 +37,7 @@ class BinaryHeapTest {
     }
 
     @ParameterizedTest
-    @MethodSource("IntegerDataPopPush")
-    public void testPushMethod(List<Integer> data) {
-        for(int i: data) {
-            binaryHeap.push(i);
-        }
-
-        // verify size
-        assertEquals(data.size(), binaryHeap.count());
-    }
-
-    @ParameterizedTest
-    @MethodSource("IntegerDataPopPush")
+    @MethodSource("IntegerDataPop")
     public void testPopMethod(List<Integer> data, Integer min, List<Integer> finalList) {
         for(Integer i: data) {
             binaryHeap.push(i);
@@ -64,13 +53,21 @@ class BinaryHeapTest {
     }
 
     @ParameterizedTest
-    @MethodSource("IntegerDataPopPush")
-    public void testPeekMethod(List<Integer> data, Integer expected) {
+    @MethodSource("IntegerDataPeekPush")
+    @DisplayName("test push and peek method")
+    public void testPeekPushMethod(List<Integer> data, Integer min, List orderedList) {
         for(Integer i: data) {
             binaryHeap.push(i);
         }
-        assertEquals(binaryHeap.peek(), expected);
 
+        // test push
+        assertEquals(binaryHeap.count(), data.size());
+
+        // check order
+        assertEquals(binaryHeap.getHeap(), orderedList);
+
+        // test peek
+        assertEquals(binaryHeap.peek(), min);
         // peek don't remove the minimum element
         // it should equal the size of data
         assertEquals(binaryHeap.count(), data.size());
@@ -97,17 +94,31 @@ class BinaryHeapTest {
         assertEquals(binaryHeap.count(), 5);
     }
 
-    static Stream<Arguments> IntegerDataPopPush() {
+    static Stream<Arguments> IntegerDataPop() {
         return Stream.of(
                 // Integer values => one elements
-                Arguments.arguments(List.of(1), 1, Collections.emptyList()),
+                Arguments.arguments(List.of(1), 1, List.of()),
 
                 // Integer values => multiple elements
-                Arguments.arguments(Arrays.asList(1,3,2,-2,4), -2, Arrays.asList(1, 3, 2, 4)),
-                Arguments.arguments(Arrays.asList(1,3,0,7,9), 0, Arrays.asList(1, 3, 9, 7)),
-                Arguments.arguments(Arrays.asList(3,4,6,9), 3, Arrays.asList(4,9,6)),
+                Arguments.arguments(List.of(1,3,2,-2,4), -2, List.of(1, 3, 2, 4)),
+                Arguments.arguments(List.of(1,3,0,7,9), 0, List.of(1, 3, 9, 7)),
+                Arguments.arguments(List.of(0,1,0,1,0), 0, List.of(0,1,0,1)),
                 // using some duplicated data
-                Arguments.arguments(Arrays.asList(0,-2,9,9,5,4,7,-6,2,4), -6, Arrays.asList(-2, 0, 4, 2, 4, 9, 7, 9, 5))
+                Arguments.arguments(List.of(0,-2,9,9,5,4,7,-6,2,4), -6, List.of(-2, 0, 4, 2, 4, 9, 7, 9, 5))
+        );
+    }
+
+    static Stream<Arguments> IntegerDataPeekPush() {
+        return Stream.of(
+                // Integer values => one elements
+                Arguments.arguments(List.of(1), 1, List.of(1)),
+
+                // Integer values => multiple elements
+                Arguments.arguments(List.of(1,3,2,-2,4), -2, List.of(-2, 1, 2, 3, 4)),
+                Arguments.arguments(List.of(1,3,0,7,9), 0, List.of(0, 3, 1, 7, 9)),
+                Arguments.arguments(List.of(3,4,6,9), 3, List.of(3, 4, 6, 9)),
+                // using some duplicated data
+                Arguments.arguments(List.of(0,-2,9,9,5,4,7,-6,2,4), -6, List.of(-6, -2, 4, 0, 4, 9, 7, 9, 2, 5))
         );
     }
 }
