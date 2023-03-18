@@ -15,27 +15,37 @@ public class BinaryHeap<T> {
         this.comparator = comparator;
     }
 
+    /**
+     * is responsible for moving the new root element down the heap until it reaches the correct position.
+     * @param i the element
+     */
     private void shiftDown(int i) {
         int leftChildIndex = 2 * i + 1;
         int rightChildIndex = 2 * i + 2;
-        int smallestChildIndex = i;
-        if ((leftChildIndex < heap.size()) && (comparator.compare(heap.get(leftChildIndex), heap.get(smallestChildIndex)) < 0)) {
-            smallestChildIndex = leftChildIndex;
+        int smallIndex = i;
+        if ((leftChildIndex < heap.size()) && (comparator.compare(heap.get(leftChildIndex), heap.get(smallIndex)) < 0)) {
+            smallIndex = leftChildIndex;
         }
-        if ((rightChildIndex < heap.size()) && (comparator.compare(heap.get(rightChildIndex), heap.get(smallestChildIndex)) < 0)) {
-            smallestChildIndex = rightChildIndex;
+        if ((rightChildIndex < heap.size()) && (comparator.compare(heap.get(rightChildIndex), heap.get(smallIndex)) < 0)) {
+            smallIndex = rightChildIndex;
         }
-        if (smallestChildIndex != i) {
+        if (smallIndex != i) {
+            // swapping
             T tmp = heap.get(i);
-            heap.set(i, heap.get(smallestChildIndex));
-            heap.set(smallestChildIndex, tmp);
-            shiftDown(smallestChildIndex);
+            heap.set(i, heap.get(smallIndex));
+            heap.set(smallIndex, tmp);
+            shiftDown(smallIndex);
         }
     }
 
+    /**
+     * responsible for moving a newly added element up the heap until it reaches the correct position.
+     * @param i the element
+     */
     public void shiftUp(int i) {
         int parentIndex = (i - 1) / 2;
         if ((parentIndex >= 0) && (comparator.compare(heap.get(i), heap.get(parentIndex)) < 0)) {
+            // swapping
             T tmp = heap.get(i);
             heap.set(i, heap.get(parentIndex));
             heap.set(parentIndex, tmp);
@@ -97,6 +107,10 @@ public class BinaryHeap<T> {
         return this.heap.size();
     }
 
+    /**
+     * Get heap values
+     * @return
+     */
     public List<T>  getHeap() {
         return new ArrayList<>(heap);
     }
