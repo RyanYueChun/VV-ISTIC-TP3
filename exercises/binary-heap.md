@@ -40,3 +40,10 @@ Use the following steps to design the test suite:
 Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 
 ## Answer
+
+You can find the program code [here](../code/tp3-heap)
+
+In this program, I implemented the heap sort using binary heap data structure (Min Heap).
+
+For pop, push, count tests, checking the number of elements (Size of the heap) in the heap is a **common** characteristic
+between these tests to verify the correct functioning.
